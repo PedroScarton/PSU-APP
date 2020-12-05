@@ -1,0 +1,19 @@
+.start_title {
+  height: 75vh;
+  padding: 8rem 0;
+  box-sizing: border-box;
+}
+
+.start_title h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0;
+}
+
+.start_buttons {
+    height: 25vh;
+    padding: 2rem 0;
+    box-sizing: border-box;
+}
