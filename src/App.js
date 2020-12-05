@@ -1,13 +1,15 @@
 import React from 'react';
 
-import Start from './Start/pages/Start';
+// import Register from './Auth/pages/Register';
+import Login from './Auth/pages/Login';
+// import Start from './Start/pages/Start';
 import './App.css';
 
 const App = () => {
   return (
     <React.Fragment>
       <main>
-        <Start/>
+        <Login />
       </main>
     </React.Fragment>
   );
