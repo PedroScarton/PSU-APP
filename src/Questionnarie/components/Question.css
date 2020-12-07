@@ -1,0 +1,17 @@
+.general_options{
+    width: 100%;
+    margin-top: 50px;
+}
+
+.option{
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+}
+
+.option input{
+    position: absolute;
+    margin: 0;
+    margin-left: 300px;
+}
+
