@@ -1,0 +1,25 @@
+.lobby {
+  padding: 15px;
+  box-sizing: border-box;
+  height: 90vh;
+}
+
+.lobby__title {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lobby__title h1 {
+    font-size: 3rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.lobby_button {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -45,3 +45,15 @@
 .appBar--single p {
   margin: 0 20px 0 0;
 }
+
+
+.appBar_clock{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.appBar_clock p {
+  margin: 0;
+  margin-right: 5px;
+}

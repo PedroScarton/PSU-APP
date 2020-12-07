@@ -51,12 +51,14 @@ const Input = props => {
         })
     }
 
-    const showPasswordHandler = () => {
+    const showPasswordHandler = (event) => {
+        event.preventDefault();
         setEyeMode(false)
         setPasswordMode('text')
     }
 
-    const hidePasswordHandler = () => {
+    const hidePasswordHandler = (event) => {
+        event.preventDefault();
         setEyeMode(true)
         setPasswordMode('password')
     }

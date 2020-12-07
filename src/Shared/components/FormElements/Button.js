@@ -5,7 +5,10 @@ import './Button.css';
 const Button = (props) => {
 
     return (
-        <button className={`button ${props.inverse && 'button--inverse'}`}
+        <button
+            type={props.type}
+            className={`button ${props.inverse && 'button--inverse'}`}
+            style={{width: props.size}}
             onClick={props.onClick}>
             {props.children}
         </button>

@@ -1,0 +1,16 @@
+.statement {
+  padding: 5px 0;
+  box-sizing: border-box;
+}
+
+.statement h4 {
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.statement__description {
+}
+
+.statement__description p {
+  margin: 0;
+}

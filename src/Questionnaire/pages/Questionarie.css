@@ -1,0 +1,12 @@
+.questionarie {
+  padding: 50px 10px 15px 10px;
+  box-sizing: border-box;
+  height: 90vh;
+}
+
+.questionarie__questions {
+  padding: 0px 15px;
+  box-sizing: border-box;
+}
+.questionarie__buttons {
+}
