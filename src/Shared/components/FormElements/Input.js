@@ -4,6 +4,7 @@ import { validate } from '../../util/validators';
 
 import eyeOn from '../../../Assets/Icons/eye.svg'
 import eyeOff from '../../../Assets/Icons/eye-off.svg'
+import Check from '../../../Assets/Icons/check.svg';
 import './Input.css';
 
 const inputReducer = (state, action) => {
@@ -37,8 +38,10 @@ const Input = props => {
 
 
     useEffect(() => {
-        onInput(id, value, isValid)
-    }, [id, onInput, value, isValid])
+        if (props.type !== 'radio') {
+            onInput(id, value, isValid)
+        }
+    }, [id, onInput, value, isValid, props.type])
 
 
     const changeHandler = event => {
@@ -106,6 +109,24 @@ const Input = props => {
                     value={value} />
 
             </React.Fragment>
+        )
+    } else if (props.type === 'radio') {
+        return (
+            <div className={`form-control-radio ${props.selected === props.value ? 'form-control-radio--selected' : 'form-control-radio--not-selected'}`}>
+                <label htmlFor={props.id}>
+                    <p>{props.label}</p>
+                    <input
+                    id={id}
+                    type={props.type}
+                    checked={props.selected === props.value}
+                    onChange={() => props.changeHandler(props.value)}
+                    value={props.value}
+                />
+                <span className={`${props.selected === props.value ? 'form-control-radio__check--selected' : 'form-control-radio__check--not-selected'}`}>
+                    <img src={Check} alt=""/>
+                </span>
+                </label>
+            </div>
         )
     }
 

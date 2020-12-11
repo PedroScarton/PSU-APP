@@ -22,3 +22,9 @@
     background: transparent;
     color: #D03D3E;
 }
+
+
+.button--disabled{
+    background-color: #BA3838;
+    border: 3px solid #BA3838;
+}

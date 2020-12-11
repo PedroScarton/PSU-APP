@@ -1,12 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import AppBar from '../../Shared/components/Navigation/appBar';
 import Statement from '../components/Statement';
+import Question from '../components/Question';
 import Button from '../../Shared/components/FormElements/Button';
+import AppBar from '../../Shared/components/Navigation/appBar';
 import Clock from '../../Assets/Icons/clock.svg';
 import './Questionarie.css';
 
+const DUMMY_QUESTION = {
+    id: 1,
+    statement: [
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero',
+        '<img src={} alt=""/>',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero'
+    ],
+    option1: 'Esta es la opción 1',
+    option2: 'Esta es la opción 2',
+    option3: 'Esta es la opción 3',
+    option4: 'Esta es la opción 4',
+    option5: 'Esta es la opción 5',
+    difficulty: "MEDIUM",
+    answer: {
+        id: 1,
+        correctOption: 2,
+        description: [
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero',
+            '<img/>',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero'
+        ]
+    }
+
+}
+
+const options = [
+    DUMMY_QUESTION.option1,
+    DUMMY_QUESTION.option2,
+    DUMMY_QUESTION.option3,
+    DUMMY_QUESTION.option4,
+    DUMMY_QUESTION.option5
+]
+
 const Questionarie = () => {
+
+    const [question, setQuestion] = useState(null);
+    const [isSelected, setIsSelected] = useState(false);
+
+    const questionSelectedHandler = () => {
+        setIsSelected(true);
+    }
+
+    const nextQuestionHandler = () => {
+        console.log('siguiente')
+    }
+
+    const previusQuestionHandler = () => {
+        console.log('anterior')
+    }
+
+    // let last = false;
+    // if (DUMMY_QUESTION[-1].id === question.id) {
+    //     last = true;
+    // }
 
     return (
         <React.Fragment>
@@ -18,25 +72,24 @@ const Questionarie = () => {
                 </div>
             </AppBar>
             <main className="questionarie">
-                <form onSubmit={null}>
+                <form onSubmit={(event) => event.preventDefault()}>
                     <div className="questionarie__questions">
-                        <div>
-                            <Statement question={'Si P = 1,76 ¿Cuál es el valor de 10P?'} />
-                        </div>
-                        <div>
-                            <Question options={null}/> 
-                        </div>
+                        <Statement question={'Si P = 1,76 ¿Cuál es el valor de 10P?'} />
+                        <Question options={options} questionSelected={questionSelectedHandler} />
                     </div>
                     <div className="questionarie__buttons">
                         <Button
                             type="text"
-                            onClick={() => console.log('anterior')}
-                            inverse>
+                            onClick={previusQuestionHandler}
+                            inverse
+                            size="150px">
                             Anterior
                     </Button>
                         <Button
                             type="text"
-                            onClick={() => console.log('siguiente')}>
+                            disabled={!isSelected}
+                            onClick={nextQuestionHandler}
+                            size="150px">
                             Siguiente
                     </Button>
                     </div>

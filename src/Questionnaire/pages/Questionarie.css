@@ -4,9 +4,16 @@
   height: 90vh;
 }
 
+.questionarie form {
+  height: 100%;
+  width: 100%;
+}
+
 .questionarie__questions {
   padding: 0px 15px;
   box-sizing: border-box;
+  height: 90%;
 }
 .questionarie__buttons {
+  display: flex;
 }
