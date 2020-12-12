@@ -97,7 +97,6 @@
   font-weight: 500;
 }
 
-
 .form-control-radio--selected {
   border: 3px solid #8c5e58;
   font-weight: 700;
@@ -125,4 +124,22 @@
   align-items: center;
   border: 3px solid #8c5e58;
   background-color: #8c5e58;
+}
+
+.form-control-radio--incorrect,
+.form-control-radio--correct,
+.form-control-radio--correct-not-selected {
+  border: 3px solid #f6f6f6;
+  font-weight: 500;
+}
+
+.form-control-radio--correct,
+.form-control-radio--correct-not-selected {
+  background-color: #BFFFC9;
+  font-weight: 700;
+}
+
+.form-control-radio--incorrect {
+  background-color: #FFBFBF;
+  font-weight: 500;
 }

@@ -1,0 +1,20 @@
+.solutionary {
+    padding: 50px 10px 15px 10px;
+    box-sizing: border-box;
+    height: 90vh;
+  }
+  
+  .solutionary form {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .solutionary__questions {
+    padding: 0px 15px;
+    box-sizing: border-box;
+    min-height: 40%;
+  }
+  .solutionary__buttons {
+    display: flex;
+  }
+  

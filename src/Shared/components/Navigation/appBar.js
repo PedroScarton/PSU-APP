@@ -1,19 +1,25 @@
 import React from 'react';
 
+import { useHistory } from 'react-router-dom'
+
 import LeftArrow from '../../../Assets/Icons/arrow-left.svg';
 import './appBar.css';
 
-const appBar = (props) => {
+const AppBar = (props) => {
+    const history = useHistory();
+    const goBack = () => {
+        history.goBack();
+    }
     return (
-        <div className="appBar">
-            <button onClick={props.onClick}>
-                <img src={LeftArrow} alt=""/>
+        <header className="appBar">
+            <button onClick={goBack}>
+                <img src={LeftArrow} alt="" />
             </button>
-            <div className={`appBar--single ${props.time && 'appBar--double'}`}> 
+            <div className={`appBar--single ${props.time && 'appBar--double'}`}>
                 {props.children}
             </div>
-        </div>
+        </header>
     );
 }
 
-export default appBar;
+export default AppBar;

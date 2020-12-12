@@ -21,7 +21,8 @@ const Question = (props) => {
                 selected={actualValue}
                 value={option}
                 changeHandler={changeHandler}
-                label={option} />
+                label={option}
+                disabled={props.solutions} />
         ))
     )
 

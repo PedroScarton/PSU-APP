@@ -12,6 +12,7 @@
     font-weight: 600;
     background-color: #D03D3E;
     cursor: pointer;
+    text-align: center;
 }
 
 .button:focus {

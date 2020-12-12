@@ -112,19 +112,24 @@ const Input = props => {
         )
     } else if (props.type === 'radio') {
         return (
-            <div className={`form-control-radio ${props.selected === props.value ? 'form-control-radio--selected' : 'form-control-radio--not-selected'}`}>
+            <div className={`form-control-radio 
+            ${props.selected === props.value ? 'form-control-radio--selected' : 'form-control-radio--not-selected'}
+            ${props.incorrect && props.selected === props.value && 'form-control-radio--incorrect'} 
+            ${props.correct && props.selected === props.value && 'form-control-radio--correct'}
+            ${props.correct && !(props.selected === props.value) && 'form-control-radio--correct-not-selected'}`}>
                 <label htmlFor={props.id}>
                     <p>{props.label}</p>
                     <input
-                    id={id}
-                    type={props.type}
-                    checked={props.selected === props.value}
-                    onChange={() => props.changeHandler(props.value)}
-                    value={props.value}
-                />
-                <span className={`${props.selected === props.value ? 'form-control-radio__check--selected' : 'form-control-radio__check--not-selected'}`}>
-                    <img src={Check} alt=""/>
-                </span>
+                        id={id}
+                        type={props.type}
+                        checked={props.selected === props.value}
+                        onChange={() => props.changeHandler(props.value)}
+                        value={props.value}
+                        disabled={props.disabled}
+                    />
+                    <span className={`${props.selected === props.value ? 'form-control-radio__check--selected' : 'form-control-radio__check--not-selected'}`}>
+                        <img src={Check} alt="" />
+                    </span>
                 </label>
             </div>
         )

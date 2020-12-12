@@ -1,0 +1,22 @@
+.resume__main {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+
+.resume--card h3 {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.resume--card p {
+  margin: 15px 0;
+}
+
+.resume--card span {
+    font-weight: 600;
+    margin-right: 15px;
+}

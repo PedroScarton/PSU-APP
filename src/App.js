@@ -1,19 +1,46 @@
 import React from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
-// import Register from './Auth/pages/Register';
-// import Login from './Auth/pages/Login';
-// import Start from './Start/pages/Start';
-// import Lobby from './Start/pages/Lobby';
-import Questionarie from './Questionnaire/pages/Questionarie';
+import Start from './Start/pages/Start';
+import Register from './Auth/pages/Register';
+import Login from './Auth/pages/Login';
+import Lobby from './Start/pages/Lobby';
+import Test from './Questionnaire/pages/Test';
+import { AuthContext } from './Shared/context/auth-context';
+import { useAuth } from './Shared/hooks/auth-hook';
 import './App.css';
 
 const App = () => {
+
+  const { token, userId, login, logout } = useAuth();
+
+  let routes;
+
+  if (!token) {
+    routes = (
+      <Switch>
+        <Route path="/" exact component={Start} />
+        <Route path="/signup" exact component={Register} />
+        <Route path="/login" exact component={Login} />
+        <Redirect to="/" />
+      </Switch>
+    )
+  } else {
+    routes = (
+      <Switch>
+        <Route path="/" exact component={Lobby} />
+        <Route path="/signup" exact component={Test} />
+        <Redirect to="/" />
+      </Switch>
+    )
+  }
+
   return (
-    <React.Fragment>
-      <div>
-        <Questionarie /> 
-      </div>
-    </React.Fragment>
+    <AuthContext.Provider value={{ isLoggedIn: !!token, token: token, userId: userId, login: login, logout: logout }}>
+      <Router>
+        {routes}
+      </Router>
+    </AuthContext.Provider>
   );
 }
 

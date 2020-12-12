@@ -12,8 +12,8 @@ const Start = () => {
             </div>
             <div className="center">
                 <div className="start_buttons">
-                    <Button onClick={() => console.log('hola')} >Iniciar sesión</Button>
-                    <Button onClick={() => console.log('hola')} inverse>Registrarse</Button>
+                    <Button to={"/login"} >Iniciar sesión</Button>
+                    <Button to={"/signup"} inverse>Registrarse</Button>
                 </div>
             </div>
         </React.Fragment>
