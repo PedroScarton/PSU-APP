@@ -7,6 +7,7 @@ import { AuthContext } from '../../Shared/context/auth-context';
 
 import AppBar from '../../Shared/components/Navigation/appBar';
 import Input from '../../Shared/components/FormElements/Input';
+import ErrorModal from '../../Shared/components/UIElements/ErrorModal';
 import Button from '../../Shared/components/FormElements/Button';
 import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
 import './Register.css'
@@ -43,8 +44,8 @@ const Register = () => {
                 process.env.REACT_APP_BACKEND_URL + '/user',
                 'POST',
                 JSON.stringify({
-                    name: formState.inputs.nombre.value,
-                    lastName: formState.inputs.apellido.value,
+                    firstname: formState.inputs.nombre.value,
+                    lastname: formState.inputs.apellido.value,
                     email: formState.inputs.correo.value,
                     password: formState.inputs.contraseña.value
                 }),
@@ -52,7 +53,6 @@ const Register = () => {
                     'Content-type': 'application/json'
                 }
             );
-            auth.login(responseData.userId, responseData.token);
         } catch (err) {
 
         }
@@ -60,7 +60,8 @@ const Register = () => {
 
     return (
         <React.Fragment>
-            <AppBar onClick={null} />
+            <AppBar />
+            <ErrorModal error={error} onClear={clearError} />
             <main className="register">
                 {
                     isLoading && (

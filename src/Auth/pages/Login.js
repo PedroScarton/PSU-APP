@@ -9,6 +9,7 @@ import AppBar from '../../Shared/components/Navigation/appBar';
 import Input from '../../Shared/components/FormElements/Input';
 import Button from '../../Shared/components/FormElements/Button';
 import LoadingSpinner from '../../Shared/components/UIElements/LoadingSpinner';
+import ErrorModal from '../../Shared/components/UIElements/ErrorModal'
 import './Login.css'
 
 const Login = () => {
@@ -42,7 +43,8 @@ const Login = () => {
                     'Content-type': 'application/json'
                 }
             );
-            auth.login(responseData.userId, responseData.token);
+            const userName = responseData.firstname + responseData.lastname;
+            auth.login(userName, responseData.token);
         } catch (err) {
 
         }
@@ -51,6 +53,7 @@ const Login = () => {
 
     return (
         <React.Fragment>
+            <ErrorModal error={error} onClear={clearError}/>
             <AppBar onClick={null} />
             <main className="login">
                 {

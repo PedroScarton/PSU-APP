@@ -9,7 +9,7 @@ export const useAuth = () => {
 
     const login = useCallback((uid, token, expirationDate) => {
         setToken(token);
-        const tokenExpirationDate = expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
+        const tokenExpirationDate = expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 7);
         setTokenExpirationDate(tokenExpirationDate);
         localStorage.setItem(
             'userData',

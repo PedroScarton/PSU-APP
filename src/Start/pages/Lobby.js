@@ -15,7 +15,7 @@ const Lobby = () => {
                     <h1>PSU APP</h1>
                 </div>
                 <div className="lobby_button">
-                    <Button type="text" onClick={() => console.log('test iniciado')}>Test Rapido</Button>
+                    <Button to={'/test'}>Test Rapido</Button>
                 </div>
             </main>
         </React.Fragment>

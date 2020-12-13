@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import AppBar from '../../Shared/components/Navigation/appBar';
 import Clock from '../../Assets/Icons/clock.svg';
@@ -8,6 +8,32 @@ import Card from '../../Shared/components/UIElements/Card'
 import './Resume.css';
 
 const Resume = (props) => {
+
+    const [score, setScore] = useState(0);
+    const [correct, setCorrect] = useState(0);
+    const [wrong, setWrong] = useState(0);
+    const [notAnswered, setNotAnswered] = useState(0);
+
+    useEffect(() => {
+
+    }, [props.ensayo, props.time])
+
+    const getScore = (correct, wrong, notAnswered) => {
+
+    }
+
+    const getCorrect = (questions) => {
+
+    }
+
+    const getWrong = (questions) => {
+
+    }
+
+    const getnotAnswered = (questions) => {
+
+    }
+
 
     return (
         <React.Fragment>

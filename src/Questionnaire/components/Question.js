@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Input from '../../Shared/components/FormElements/Input';
 import './Question.css';
@@ -7,9 +7,18 @@ const Question = (props) => {
 
     const [actualValue, setActualValue] = useState('option1');
 
+    useEffect(() => {
+        if(props.question.selected) {
+            setActualValue(props.question.selected)
+        } else {
+            setActualValue('')
+        }
+
+    }, [props.question])
+
     const changeHandler = (value) => {
-        props.questionSelected();
         setActualValue(value);
+        props.questionSelected(value);
     }
 
     const elements = (
