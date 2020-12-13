@@ -2,9 +2,12 @@ import React from 'react';
 
 import Button from '../../Shared/components/FormElements/Button';
 
+// import { MathComponent } from 'mathjax-react'
+
 import './Start.css';
 
 const Start = () => {
+
     return (
         <React.Fragment>
             <div className="start_title">

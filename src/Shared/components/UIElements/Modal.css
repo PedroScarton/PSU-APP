@@ -12,20 +12,29 @@
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;
-  background: #2a006e;
+  box-sizing: border-box;
+  background: #23364f;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   color: white;
 }
 
-.modal__header h2 {
-  margin: 0.5rem;
+.modal__header h3 {
+  margin: 0.2rem;
+  font-size: 1.3rem;
 }
 
 .modal__content {
-  padding: 1rem 0.5rem;
+  padding: 1.5rem 0.5rem;
+}
+
+.modal__content p {
+  font-size: 1.1rem;
+  text-align: center;
 }
 
 .modal__footer {
-  padding: 1rem 0.5rem;
+  padding: 0.5rem 0.5rem;
 }
 
 @media (min-width: 768px) {
