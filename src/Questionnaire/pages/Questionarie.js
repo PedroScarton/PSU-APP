@@ -55,12 +55,12 @@ const Questionarie = (props) => {
         }
     }, [question, props.ensayo])
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         setTime(seconds => seconds + 1);
-    //     }, 1000);
-    //     return () => clearInterval(interval);
-    // }, [setTime])
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime(seconds => seconds + 1);
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [setTime])
 
     const getOptions = () => {
         const options = [
@@ -136,7 +136,6 @@ const Questionarie = (props) => {
         //actualizo el stage para cambiar de pagina
         props.nextStage('resume');
     }
-
     return (
         <React.Fragment>
             <AppBar time>
