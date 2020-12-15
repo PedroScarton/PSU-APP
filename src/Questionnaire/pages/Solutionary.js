@@ -8,30 +8,6 @@ import Solution from '../components/Solution';
 
 import './Solutionary.css';
 
-const DUMMY_QUESTION = {
-    id: 1,
-    statement: [
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero',
-        '<img src={} alt=""/>',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero'
-    ],
-    option1: 'Esta es la opción 1',
-    option2: 'Esta es la opción 2',
-    option3: 'Esta es la opción 3',
-    option4: 'Esta es la opción 4',
-    option5: 'Esta es la opción 5',
-    difficulty: "MEDIUM",
-    answer: {
-        id: 1,
-        correctOption: 2,
-        description: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero',
-            '<img/>',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero'
-        ]
-    }
-
-}
 
 
 const Solutionary = (props) => {
@@ -104,36 +80,42 @@ const Solutionary = (props) => {
         setOpenModal(prev => prev = !prev)
     }
 
+    console.log('entra')
+
 
     return (
         <React.Fragment>
             <AppBar time>
                 <p>{actulQuestion + 1}/20</p>
             </AppBar>
-            <main className="solutionary">
-                <div className="solutionary__questions">
-                    <Statement statement={question.statement} />
-                    <Question question={question} solutions options={getOptions()} />
-                </div>
-                <Solution question={question} open={openModal} modalHandler={modalHandler} />
-                <div className="solutionary__buttons">
-                    <Button
-                        type="text"
-                        disabled={actulQuestion === 0}
-                        onClick={previusQuestionHandler}
-                        inverse
-                        size="150px">
-                        Anterior
+            {
+                question &&
+                (<main className="solutionary">
+                    <div className="solutionary__questions">
+                        <Statement statement={question.statement} />
+                        <Question question={question} solutions options={getOptions()} />
+                    </div>
+                    <Solution question={question.answer.description} open={openModal} modalHandler={modalHandler} />
+                    <div className="solutionary__buttons">
+                        <Button
+                            type="text"
+                            disabled={actulQuestion === 0}
+                            onClick={previusQuestionHandler}
+                            inverse
+                            size="150px">
+                            Anterior
                     </Button>
-                    <Button
-                        type={last ? null : "text"}
-                        to={last ? "/" : null}
-                        onClick={last ? null : nextQuestionHandler}
-                        size="150px">
-                        Siguiente
+                        <Button
+                            type={last ? null : "text"}
+                            to={last ? "/" : null}
+                            onClick={last ? null : nextQuestionHandler}
+                            size="150px">
+                            Siguiente
                     </Button>
-                </div>
-            </main>
+                    </div>
+                </main>
+                )
+            }
         </React.Fragment>
     )
 
