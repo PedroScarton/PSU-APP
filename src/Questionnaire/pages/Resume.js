@@ -6,12 +6,14 @@ import Button from '../../Shared/components/FormElements/Button';
 import Card from '../../Shared/components/UIElements/Card'
 
 import './Resume.css';
+import Cronometro from '../components/Cronometro';
 
 const Resume = (props) => {
 
     const [score, setScore] = useState(0);
     const [correct, setCorrect] = useState(0);
     const [wrong, setWrong] = useState(0);
+    const [textTime, setTextTime] = useState('00:00');
 
     useEffect(() => {
 
@@ -41,10 +43,27 @@ const Resume = (props) => {
         }
 
         const { correct, wrong, score } = getTestInfo(props.ensayo);
+        const newTime = timerHandler(props.time);
+        setTextTime(newTime);
         setCorrect(correct);
         setWrong(wrong);
         setScore(score);
     }, [props])
+
+    const timerHandler = (time) => {
+        var hrs = ~~(time / 3600);
+        var mins = ~~((time % 3600) / 60);
+        var secs = ~~time % 60;
+
+
+        var ret = "";
+        if (hrs > 0) {
+            ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+        }
+        ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+        ret += "" + secs;
+        return ret;
+    }
 
     const endResumeHandler = (event) => {
         event.preventDefault();
@@ -52,15 +71,11 @@ const Resume = (props) => {
         props.nextStage('solutions');
     }
 
-
     return (
         <React.Fragment>
             <AppBar time>
                 <p></p>
-                <div className="appBar_clock">
-                    <p>{props.totalTime}</p>
-                    <img src={Clock} alt="" />
-                </div>
+                <Cronometro time={props.time}/>
             </AppBar>
             <main className="resume__main">
                 <Card className="resume--card">
@@ -69,7 +84,7 @@ const Resume = (props) => {
                         <p><span>Puntaje: </span>{score}</p>
                         <p><span>Correctas: </span>{correct}</p>
                         <p><span>Incorrectas: </span>{wrong}</p>
-                        <p><span>Tiempo total: </span>{props.totalTime}</p>
+                        <p><span>Tiempo total: </span>{textTime}</p>
                     </div>
                 </Card>
                 <Button onClick={endResumeHandler}>Ver soluciones</Button>
