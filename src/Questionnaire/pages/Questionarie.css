@@ -12,7 +12,7 @@
 .questionarie__questions {
   padding: 0px 15px;
   box-sizing: border-box;
-  height: 90%;
+  min-height: 90%;
 }
 .questionarie__buttons {
   display: flex;

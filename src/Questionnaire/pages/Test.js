@@ -90,27 +90,41 @@ const Test = () => {
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
     const [stage, setStage] = useState('');
-    const [questions, setQuestions] = useState(null);
-    const [totalTime, setTotalTime] = useState(null);
+    const [ensayo, setEnsayo] = useState(null);
+    const [totalTime, setTotalTime] = useState(0);
 
     useEffect(() => {
-        // const getEnsayo = async () => {
+        const getEnsayo = async () => {
+            try {
+                const respondeData = await sendRequest(
+                    process.env.REACT_APP_BACKEND_URL + `/test`,
+                    'PATCH',
+                    JSON.stringify({
 
-        // }
-        const response = {
-            ensayo: true
-        };
-        if (response.ensayo) {
-            setStage('ensayo')
+                    }),
+                    {
+                        'Content-Type': 'application/json', Authorization: 'Bearer ' + auth.token
+                    }
+                );
+                return respondeData;
+            } catch (err) {
+
+            }
         }
-    }, [setStage]);
+        const newEnsayo = getEnsayo();
+        setEnsayo(newEnsayo)
+        setStage('ensayo');
+
+    }, [setStage, sendRequest]);
 
     const nextStageHandler = (value) => {
         setStage(value)
     }
 
-    const updateQuestionsHandler = (value, time) => {
-        setQuestions(value)
+    const updateQuestionsHandler = (value, time = totalTime) => {
+        const newEnsayo = ensayo;
+        newEnsayo.test = value;
+        setEnsayo(newEnsayo);
         setTotalTime(time);
     }
 
@@ -127,7 +141,7 @@ const Test = () => {
             {
                 stage === 'ensayo' && (
                     <Questionnaire
-                        ensayo={DUMMY_QUESTIONS}
+                        ensayo={ensayo.test}
                         updateQuestions={updateQuestionsHandler}
                         nextStage={nextStageHandler} />
                 )
@@ -135,16 +149,16 @@ const Test = () => {
             {
                 stage === 'resume' && (
                     <Resume
-                        ensayo={DUMMY_QUESTIONS}
+                        ensayo={ensayo}
                         updateQuestions={updateQuestionsHandler}
+                        time={totalTime}
                         nextStage={nextStageHandler} />
                 )
             }
             {
                 stage === 'solutions' && (
                     <Solutionary
-                        ensayo={DUMMY_QUESTIONS}
-                        updateQuestions={updateQuestionsHandler} />
+                        ensayo={ensayo.test} />
                 )
             }
         </React.Fragment>

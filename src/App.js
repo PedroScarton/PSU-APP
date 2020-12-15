@@ -6,14 +6,13 @@ import Register from './Auth/pages/Register';
 import Login from './Auth/pages/Login';
 import Lobby from './Start/pages/Lobby';
 import Test from './Questionnaire/pages/Test';
-import Statement from './Questionnaire/components/Statement';
 import { AuthContext } from './Shared/context/auth-context';
 import { useAuth } from './Shared/hooks/auth-hook';
 import './App.css';
 
 const App = () => {
 
-  const { token, userId, login, logout } = useAuth();
+  const { token, userName, login, logout } = useAuth();
 
   let routes;
 
@@ -36,16 +35,13 @@ const App = () => {
     )
   }
 
-  // return (
-  //   <AuthContext.Provider value={{ isLoggedIn: !!token, token: token, userId: userId, login: login, logout: logout }}>
-  //     <Router>
-  //       {routes}
-  //     </Router>
-  //   </AuthContext.Provider>
-  // );
   return (
-    <Statement />
-  )
+    <AuthContext.Provider value={{ isLoggedIn: !!token, token: token, userName: userName, login: login, logout: logout }}>
+      <Router>
+        {routes}
+      </Router>
+    </AuthContext.Provider>
+  );
 }
 
 

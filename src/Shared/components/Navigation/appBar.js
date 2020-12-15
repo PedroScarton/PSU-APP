@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { useHistory } from 'react-router-dom'
 
 import LeftArrow from '../../../Assets/Icons/arrow-left.svg';
@@ -7,6 +6,7 @@ import './appBar.css';
 
 const AppBar = (props) => {
     const history = useHistory();
+
     const goBack = () => {
         history.goBack();
     }

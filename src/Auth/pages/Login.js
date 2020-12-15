@@ -43,8 +43,9 @@ const Login = () => {
                     'Content-type': 'application/json'
                 }
             );
-            const userName = responseData.firstname + responseData.lastname;
-            auth.login(userName, responseData.token);
+            console.log(responseData)
+            const data = responseData.data;
+            auth.login(data.name, data.accessToken);
         } catch (err) {
 
         }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { getOption } from '../../Shared/util/converter';
 import Input from '../../Shared/components/FormElements/Input';
 import './Question.css';
 
@@ -8,7 +9,7 @@ const Question = (props) => {
     const [actualValue, setActualValue] = useState('option1');
 
     useEffect(() => {
-        if(props.question.selected) {
+        if (props.question.selected) {
             setActualValue(props.question.selected)
         } else {
             setActualValue('')
@@ -18,10 +19,12 @@ const Question = (props) => {
 
     const changeHandler = (value) => {
         setActualValue(value);
-        props.questionSelected(value);
+        if (!props.solutions) {
+            props.questionSelected(value);
+        }
     }
 
-    const elements = (
+    let elements = (
         props.options.map(option => (
             <Input
                 key={option}
@@ -30,10 +33,26 @@ const Question = (props) => {
                 selected={actualValue}
                 value={option}
                 changeHandler={changeHandler}
-                label={option}
+                label={getOption(option)}
                 disabled={props.solutions} />
         ))
     )
+
+    if (props.solutions) {
+        props.options.map(option => (
+            <Input
+                key={option}
+                type="radio"
+                id={option}
+                selected={actualValue}
+                value={option}
+                changeHandler={changeHandler}
+                label={getOption(option)}
+                disabled={props.solutions}
+                incorrect={!props.question.correct}
+                correct={props.question.correct} />
+        ))
+    }
 
 
     return (

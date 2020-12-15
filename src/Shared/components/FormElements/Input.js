@@ -118,7 +118,7 @@ const Input = props => {
             ${props.correct && props.selected === props.value && 'form-control-radio--correct'}
             ${props.correct && !(props.selected === props.value) && 'form-control-radio--correct-not-selected'}`}>
                 <label htmlFor={props.id}>
-                    <p>{props.label}</p>
+                    {props.label}
                     <input
                         id={id}
                         type={props.type}

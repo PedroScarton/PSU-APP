@@ -53,6 +53,9 @@ const Register = () => {
                     'Content-type': 'application/json'
                 }
             );
+            console.log(responseData)
+            const data = responseData.data;
+            auth.login(data.userName, data.accessToken);
         } catch (err) {
 
         }

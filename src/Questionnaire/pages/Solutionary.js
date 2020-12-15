@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import AppBar from '../../Shared/components/Navigation/appBar';
-import Clock from '../../Assets/Icons/clock.svg';
 import Button from '../../Shared/components/FormElements/Button';
 import Statement from '../components/Statement';
 import Question from '../components/Question';
@@ -34,30 +33,71 @@ const DUMMY_QUESTION = {
 
 }
 
-const options = [
-    DUMMY_QUESTION.option1,
-    DUMMY_QUESTION.option2,
-    DUMMY_QUESTION.option3,
-    DUMMY_QUESTION.option4,
-    DUMMY_QUESTION.option5
-]
 
-
-const Solutionary = () => {
+const Solutionary = (props) => {
     // const [question, setQuestion] = useState(null);
-    const [isSelected, setIsSelected] = useState(false);
-    const [openModal, setOpenModal] = useState(false)
+    const [option, setOption] = useState(null);
+    const [openModal, setOpenModal] = useState(false);
+    const [actulQuestion, setActualQuestion] = useState(0);
+    const [question, setQuestion] = useState(null);
+    const [last, setLast] = useState(false);
 
-    const questionSelectedHandler = () => {
-        setIsSelected(true);
+    useEffect(() => {
+        if (props.ensayo) {
+            setQuestion(props.ensayo[0]);
+        }
+    }, [props.ensayo])
+
+    useEffect(() => {
+        if (question && props.ensayo[19].id === question.id) {
+            setLast(true);
+        } else {
+            setLast(false);
+        }
+    }, [question, props.ensayo])
+
+    const getOptions = () => {
+        const options = [
+            question.option1,
+            question.option2,
+            question.option3,
+            question.option4,
+            question.option5
+        ]
+        return options;
     }
 
-    const nextQuestionHandler = () => {
-        console.log('siguiente')
+    const nextQuestionHandler = (event) => {
+        event.preventDefault()
+
+        //encuentro el indice de la pregunta en el arreglo de preguntas
+        const questionIndex = props.ensayo.findIndex(item => item.id === question.id);
+
+        //reiniciamos valores
+        setOption(props.ensayo[questionIndex + 1].selected);
+
+        setQuestion(props.ensayo[actulQuestion + 1]);
+        setActualQuestion(prevState => prevState + 1);
     }
 
-    const previusQuestionHandler = () => {
-        console.log('anterior')
+    const previusQuestionHandler = (event) => {
+        event.preventDefault();
+
+        //debemos obtener el valor de la pregunta que se esta accediendo
+        const questionIndex = props.ensayo.findIndex(item => item.id === question.id);
+
+        //copio la pregunta anterior
+        const nextQuestion = props.ensayo[questionIndex - 1];
+
+        //copio el valor de la opción seleccionada por el usuario
+        const nextOption = nextQuestion.selected;
+
+        //enviarle el valor a los inputs y colocarlo como valor actual y que esta seleccionado algo
+        setOption(nextOption);
+
+        //cambio la pregunta y el numero de la app bar
+        setQuestion(props.ensayo[actulQuestion - 1]);
+        setActualQuestion(prevState => prevState - 1);
     }
 
     const modalHandler = () => {
@@ -68,30 +108,27 @@ const Solutionary = () => {
     return (
         <React.Fragment>
             <AppBar time>
-                <p>20/20</p>
-                <div className="appBar_clock">
-                    <p>5:55</p>
-                    <img src={Clock} alt="" />
-                </div>
+                <p>{actulQuestion + 1}/20</p>
             </AppBar>
             <main className="solutionary">
                 <div className="solutionary__questions">
-                    <Statement question={'Si P = 1,76 ¿Cuál es el valor de 10P?'} />
-                    <Question solutions options={options} questionSelected={questionSelectedHandler} />
+                    <Statement statement={question.statement} />
+                    <Question question={question} solutions options={getOptions()} />
                 </div>
-                <Solution open={openModal} modalHandler={modalHandler}/>
+                <Solution question={question} open={openModal} modalHandler={modalHandler} />
                 <div className="solutionary__buttons">
                     <Button
                         type="text"
+                        disabled={actulQuestion === 0}
                         onClick={previusQuestionHandler}
                         inverse
                         size="150px">
                         Anterior
                     </Button>
                     <Button
-                        type="text"
-                        disabled={!isSelected}
-                        onClick={nextQuestionHandler}
+                        type={last ? null : "text"}
+                        to={last ? "/" : null}
+                        onClick={last ? null : nextQuestionHandler}
                         size="150px">
                         Siguiente
                     </Button>

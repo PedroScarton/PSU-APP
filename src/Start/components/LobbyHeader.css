@@ -49,5 +49,81 @@
   background: black;
 }
 
+.lobby-header__drawer-header {
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.lobby-header__drawer-header hr {
+  border: none;
+  background-color: #c0c0c0;
+  height: 1px;
+}
+
+.lobby-header__drawer-user-details {
+  display: flex;
+  align-items: center;
+  height: 35px;
+  margin-bottom: 10px;
+}
+.lobby-header__drawer-user-details h3,
+.lobby-header__drawer-user-details p {
+  margin: 0;
+}
+
+.lobby-header__drawer-user-details h3 {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.lobby-header__drawer-user-details p {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
 
 
+.lobby-header__drawer-initials {
+  margin: 0.2rem 0px;
+  margin-right: 10px;
+  padding: 0.2rem 0.5rem;
+  box-sizing: border-box;
+  background-color: #23364f;
+  height: 100%;
+  width: 55px;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lobby-header__drawer-initials h3 {
+  color: white;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+.lobby-header__drawer-content {
+  height: 80vh;
+}
+.lobby-header__drawer-logout-button {
+  display: flex;
+  align-items: center;
+}
+
+.lobby-header__drawer-logout-button button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+}
+
+.lobby-header__drawer-logout-button button:focus {
+  outline: none;
+}
+
+.lobby-header__drawer-logout-button button p {
+  margin-left: 10px;
+  font-size: 1.2rem;
+  color: black;
+  font-weight: 400;
+}

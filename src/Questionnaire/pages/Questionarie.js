@@ -32,14 +32,6 @@ const DUMMY_QUESTION = {
 
 }
 
-const options = [
-    DUMMY_QUESTION.option1,
-    DUMMY_QUESTION.option2,
-    DUMMY_QUESTION.option3,
-    DUMMY_QUESTION.option4,
-    DUMMY_QUESTION.option5
-]
-
 const Questionarie = (props) => {
 
     const [question, setQuestion] = useState(null);
@@ -56,7 +48,7 @@ const Questionarie = (props) => {
     }, [props.ensayo])
 
     useEffect(() => {
-        if (question && props.ensayo[2].id === question.id) {
+        if (question && props.ensayo[19].id === question.id) {
             setLast(true);
         } else {
             setLast(false);
@@ -101,9 +93,16 @@ const Questionarie = (props) => {
         //actulizo el objeto de preguntas global para test
         props.updateQuestions(newQuestions, time);
 
-        //reiniciamos valores
-        setIsSelected(false);
-        setOption(null);
+
+        if (!props.ensayo[questionIndex + 1].selected) {
+            //reiniciamos valores
+            setIsSelected(false);
+            setOption(null);
+        } else {
+            //reiniciamos valores
+            setIsSelected(true);
+            setOption(props.ensayo[questionIndex + 1].selected);
+        }
 
         //cambio la pregunta y el numero del app bar
         setQuestion(props.ensayo[actulQuestion + 1]);
@@ -138,11 +137,6 @@ const Questionarie = (props) => {
         props.nextStage('resume');
     }
 
-    // let last = false;
-    // if (DUMMY_QUESTION[-1].id === question.id) {
-    //     last = true;
-    // }
-
     return (
         <React.Fragment>
             <AppBar time>
@@ -154,7 +148,7 @@ const Questionarie = (props) => {
                     <main className="questionarie">
                         <form onSubmit={(event) => event.preventDefault()}>
                             <div className="questionarie__questions">
-                                <Statement question={'Si P = 1,76 ¿Cuál es el valor de 10P?'} />
+                                <Statement statement={question.statement} />
                                 <Question question={question} options={getOptions()} questionSelected={questionSelectedHandler} />
                             </div>
                             <div className="questionarie__buttons">
