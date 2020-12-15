@@ -29,3 +29,9 @@
     background-color: #BA3838;
     border: 3px solid #BA3838;
 }
+
+.button--inverse--disabled {
+    background-color: #b1b1b1;
+    color: white;
+    border: 3px solid #b1b1b1;
+}

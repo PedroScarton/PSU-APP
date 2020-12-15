@@ -22,7 +22,7 @@ const Button = (props) => {
     return (
         <button
             type={props.type}
-            className={`button ${props.inverse && 'button--inverse'} ${props.disabled && 'button--disabled'}`}
+            className={`button ${props.inverse && 'button--inverse'} ${props.disabled && !props.inverse && 'button--disabled'} ${props.disabled && props.inverse && 'button--inverse--disabled'}`}
             style={{ width: props.size }}
             disabled={props.disabled}
             onClick={props.onClick}>
