@@ -5,23 +5,14 @@ import close from '../../Assets/Icons/x.svg';
 import './Solution.css';
 
 
-const DUMMY_STATEMENT = [
-    "Si $b\\ \\log_{2}(a) = 2$ , ¿cuál(es) de las siguientes afirmaciones es (son) verdadera(s)?",
-    "1.) Si $0 < a < 1$, entonces $b < 0$ \n\n 2.) Si $b > 1$, entonces $a > 2$\n\n3.) Si $a = \\sqrt{32}$ , entonces $b = 2,5$ ",
-
-    "https://demre.cl/images/publicaciones/2021/large/tapa-resolucion-matematica-p2021-280px.jpg",
-
-    "in texto normal"
-]
-
 const Solution = (props) => {
 
     const [solution, setSolution] = useState(null);
 
     useEffect(() => {
-        const newSolution = arrayToStatement(DUMMY_STATEMENT);
+        const newSolution = arrayToStatement(props.solution);
         setSolution(newSolution);
-    }, [setSolution])
+    }, [setSolution, props.solution])
     return (
         <div
             className={`${props.open ? 'solution--open' : 'solution'}`}>
