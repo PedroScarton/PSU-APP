@@ -43,7 +43,6 @@ const Login = () => {
                     'Content-type': 'application/json'
                 }
             );
-            console.log(responseData)
             const data = responseData.data;
             auth.login(data.name, data.accessToken);
         } catch (err) {

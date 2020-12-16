@@ -58,15 +58,14 @@
 
 .solution__container--open {
   width: 90%;
-  margin: 0 auto;
   border-radius: 8px;
   background-color: #23364f;
   padding: 0.5rem 1rem;
   box-sizing: border-box;
-  overflow: hidden;
   position: absolute;
   bottom: 10vh;
   height: 80vh;
+  color: white;
   transition: height 0.3s ease-out;
 }
 
@@ -97,7 +96,7 @@
 }
 
 .solution__statement--open {
-  max-height: 90%;
+  height: 90%;
   overflow: auto;
   padding: 1rem 0;
   box-sizing: border-box;

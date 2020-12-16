@@ -34,4 +34,3 @@ const Statement = (props) => {
 }
 
 export default Statement;
-

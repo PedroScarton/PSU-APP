@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import AppBar from '../../Shared/components/Navigation/appBar';
-import Clock from '../../Assets/Icons/clock.svg';
 import Button from '../../Shared/components/FormElements/Button';
 import Card from '../../Shared/components/UIElements/Card'
 

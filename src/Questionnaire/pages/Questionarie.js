@@ -7,31 +7,6 @@ import AppBar from '../../Shared/components/Navigation/appBar';
 import Cronometro from '../components/Cronometro';
 import './Questionarie.css';
 
-const DUMMY_QUESTION = {
-    id: 1,
-    statement: [
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero',
-        '<img src={} alt=""/>',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero'
-    ],
-    option1: 'Esta es la opción 1',
-    option2: 'Esta es la opción 2',
-    option3: 'Esta es la opción 3',
-    option4: 'Esta es la opción 4',
-    option5: 'Esta es la opción 5',
-    difficulty: "MEDIUM",
-    answer: {
-        id: 1,
-        correctOption: 2,
-        description: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero',
-            '<img/>',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit sapien metus, in faucibus sem rutrum malesuada. Vivamus eleifend justo libero'
-        ]
-    }
-
-}
-
 const Questionarie = (props) => {
 
     const [question, setQuestion] = useState(null);

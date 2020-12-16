@@ -11,8 +11,6 @@ import './Solutionary.css';
 
 
 const Solutionary = (props) => {
-    // const [question, setQuestion] = useState(null);
-    const [option, setOption] = useState(null);
     const [openModal, setOpenModal] = useState(false);
     const [actulQuestion, setActualQuestion] = useState(0);
     const [question, setQuestion] = useState(null);
@@ -46,12 +44,6 @@ const Solutionary = (props) => {
     const nextQuestionHandler = (event) => {
         event.preventDefault()
 
-        //encuentro el indice de la pregunta en el arreglo de preguntas
-        const questionIndex = props.ensayo.findIndex(item => item.id === question.id);
-
-        //reiniciamos valores
-        setOption(props.ensayo[questionIndex + 1].selected);
-
         setQuestion(props.ensayo[actulQuestion + 1]);
         setActualQuestion(prevState => prevState + 1);
     }
@@ -59,17 +51,6 @@ const Solutionary = (props) => {
     const previusQuestionHandler = (event) => {
         event.preventDefault();
 
-        //debemos obtener el valor de la pregunta que se esta accediendo
-        const questionIndex = props.ensayo.findIndex(item => item.id === question.id);
-
-        //copio la pregunta anterior
-        const nextQuestion = props.ensayo[questionIndex - 1];
-
-        //copio el valor de la opción seleccionada por el usuario
-        const nextOption = nextQuestion.selected;
-
-        //enviarle el valor a los inputs y colocarlo como valor actual y que esta seleccionado algo
-        setOption(nextOption);
 
         //cambio la pregunta y el numero de la app bar
         setQuestion(props.ensayo[actulQuestion - 1]);
@@ -79,9 +60,6 @@ const Solutionary = (props) => {
     const modalHandler = () => {
         setOpenModal(prev => prev = !prev)
     }
-
-    console.log('entra')
-
 
     return (
         <React.Fragment>
@@ -95,7 +73,7 @@ const Solutionary = (props) => {
                         <Statement statement={question.statement} />
                         <Question question={question} solutions options={getOptions()} />
                     </div>
-                    <Solution question={question.answer.description} open={openModal} modalHandler={modalHandler} />
+                    <Solution solution={question.answer.description} open={openModal} modalHandler={modalHandler} />
                     <div className="solutionary__buttons">
                         <Button
                             type="text"

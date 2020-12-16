@@ -52,6 +52,8 @@ const Test = () => {
         setTotalTime(time);
     }
 
+    console.log(ensayo);
+
     return (
         <React.Fragment>
             <ErrorModal error={error} onClear={clearError} />
