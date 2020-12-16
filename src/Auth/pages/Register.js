@@ -55,7 +55,7 @@ const Register = () => {
             );
 
             const data = responseData.data;
-            auth.login(data.userName, data.accessToken);
+            auth.login(data.name, data.accessToken);
         } catch (err) {
 
         }
