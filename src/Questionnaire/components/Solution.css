@@ -1,3 +1,6 @@
+.solution {
+  position: relative;
+}
 .solution__container {
   width: 95%;
   margin: 0 auto;
@@ -7,6 +10,7 @@
   box-sizing: border-box;
   overflow: hidden;
   height: 250px;
+  position: relative;
 }
 
 .solution__header {
