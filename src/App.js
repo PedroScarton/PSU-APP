@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 import Start from './Start/pages/Start';
 import Register from './Auth/pages/Register';
 import Login from './Auth/pages/Login';
-import Lobby from './Start/pages/Lobby';
-import Test from './Questionnaire/pages/Test';
 import { AuthContext } from './Shared/context/auth-context';
 import { useAuth } from './Shared/hooks/auth-hook';
 import './App.css';
+import LoadingSpinner from './Shared/components/UIElements/LoadingSpinner';
+
+const Lobby = React.lazy(() => import('./Start/pages/Lobby'))
+const Test = React.lazy(() => import('./Questionnaire/pages/Test'))
+
 
 const App = () => {
 
@@ -38,7 +41,7 @@ const App = () => {
   return (
     <AuthContext.Provider value={{ isLoggedIn: !!token, token: token, userName: userName, login: login, logout: logout }}>
       <Router>
-        {routes}
+        <Suspense fallback={<div className="loadingSpinner--center"> <LoadingSpinner/> </div>}>{routes}</Suspense>
       </Router>
     </AuthContext.Provider>
   );
