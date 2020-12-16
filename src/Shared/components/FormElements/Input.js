@@ -102,6 +102,7 @@ const Input = props => {
                 }
 
                 <input
+                    autoComplete="off" autoCorrect="off"
                     id={id}
                     type={passwordMode}
                     onChange={changeHandler}
@@ -114,9 +115,9 @@ const Input = props => {
         return (
             <div className={`form-control-radio 
             ${props.selected === props.value ? 'form-control-radio--selected' : 'form-control-radio--not-selected'}
-            ${props.incorrect && props.selected === props.value && 'form-control-radio--incorrect'} 
-            ${props.correct && props.selected === props.value && 'form-control-radio--correct'}
-            ${props.correct && !(props.selected === props.value) && 'form-control-radio--correct-not-selected'}`}>
+            ${props.incorrect && 'form-control-radio--incorrect'} 
+            ${props.correct &&'form-control-radio--correct'}
+            ${props.correctOption && 'form-control-radio--correct-not-selected'}`}>
                 <label htmlFor={props.id}>
                     {props.label}
                     <input

@@ -143,3 +143,14 @@
   background-color: #FFBFBF;
   font-weight: 500;
 }
+
+
+.form-control-radio__check--selected,
+.form-control-radio__check--not-selected {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  -moz-transform: translateY(-56%);
+  -webkit-transform: translateY(-56%);
+  transform: translateY(-56%);
+}

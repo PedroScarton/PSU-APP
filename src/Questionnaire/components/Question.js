@@ -37,9 +37,8 @@ const Question = (props) => {
                 disabled={props.solutions} />
         ))
     )
-
     if (props.solutions) {
-        props.options.map(option => (
+        elements = props.options.map(option => (
             <Input
                 key={option}
                 type="radio"
@@ -49,8 +48,9 @@ const Question = (props) => {
                 changeHandler={changeHandler}
                 label={getOption(option)}
                 disabled={props.solutions}
-                incorrect={!props.question.correct}
-                correct={props.question.correct} />
+                correctOption={props.getCorrectOption(option)}
+                incorrect={!props.question.correct && option === props.question.selected}
+                correct={props.question.correct && option === props.question.selected} />
         ))
     }
 

@@ -61,6 +61,16 @@ const Solutionary = (props) => {
         setOpenModal(prev => prev = !prev)
     }
 
+    const getCorrectOption = (option) => {
+        const options = getOptions();
+        for (let i = 0; i < options.length; i++) {
+            if(option === options[i] && options[question.answer.correctOption - 1] === option){
+                return true;
+            } 
+        }
+        return false;
+    }
+
     return (
         <React.Fragment>
             <AppBar time>
@@ -71,7 +81,7 @@ const Solutionary = (props) => {
                 (<main className="solutionary">
                     <div className="solutionary__questions">
                         <Statement statement={question.statement} />
-                        <Question question={question} solutions options={getOptions()} />
+                        <Question question={question} solutions options={getOptions()} getCorrectOption={getCorrectOption} />
                     </div>
                     <Solution solution={question.answer.description} open={openModal} modalHandler={modalHandler} />
                     <div className="solutionary__buttons">
@@ -88,7 +98,7 @@ const Solutionary = (props) => {
                             to={last ? "/" : null}
                             onClick={last ? null : nextQuestionHandler}
                             size="150px">
-                            Siguiente
+                            {last ? 'Finalizar' : 'Siguiente'}
                     </Button>
                     </div>
                 </main>

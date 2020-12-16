@@ -22,7 +22,7 @@ const Resume = (props) => {
             let wrong = 0;
 
             for (let i = 0; i < newQuestions.length; i++) {
-                const correctOption = newQuestions[i].answer.correctOption;
+                const correctOption = newQuestions[i].answer.correctOption - 1;
                 const userAnswer = newQuestions[i].selected;
                 const options = [newQuestions[i].option1, newQuestions[i].option2, newQuestions[i].option3, newQuestions[i].option4, newQuestions[i].option5]
                 const optionSelected = options.findIndex(option => option === userAnswer);
