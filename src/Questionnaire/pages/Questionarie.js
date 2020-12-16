@@ -108,6 +108,19 @@ const Questionarie = (props) => {
 
     const endTestHandler = (event) => {
         event.preventDefault()
+        //encuentro el indice de la pregunta en el arreglo de preguntas
+        const questionIndex = props.ensayo.findIndex(item => item.id === question.id);
+
+        //actualizo la respuesta para la pregunta actual
+        question.selected = option;
+
+        //copio el ensayo en un nuevo objeto por seguridad y guardo en este objeto la pregunta con su respuesta actualizada en la posición donde debe ir
+        const newQuestions = props.ensayo;
+        newQuestions[questionIndex] = question;
+
+        //actulizo el objeto de preguntas global para test
+        props.updateQuestions(newQuestions, time);
+        
         //actualizo el stage para cambiar de pagina
         props.nextStage('resume');
     }
